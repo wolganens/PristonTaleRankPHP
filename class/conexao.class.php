@@ -18,17 +18,10 @@ class conexao
                     $this->con = true;
                     return true;
                 }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return false;
             }
         }
-        else{
-            return true;
-        }
+        
+        return false;
     }
 
  
@@ -38,37 +31,36 @@ class conexao
                 $this->con = false;
                 return true;
             }
-            else{
-                return false;
-            }
         }
+        
+        return false;
     }
     
     public function insert($charList){
             
-            $charList = $charList->getCharInfo();
+        $charList = $charList->getCharInfo();
 
-            foreach($charList as $value){
+        foreach($charList as $value){
 
-                $charName  = $value[0]->getCharName();
-                $charLevel = $value[0]->getCharLevel();
-                $id_class  = $value[0]->getCharClass();
+            $charName  = $value[0]->getCharName();
+            $charLevel = $value[0]->getCharLevel();
+            $id_class  = $value[0]->getCharClass();
 
-                $query = mysql_query( "SELECT 'charName' FROM rank WHERE 'charName' = '$charName' "); 
+            $query = mysql_query( "SELECT charName FROM rank WHERE charName = '$charName'"); 
+            
+            if(mysql_num_rows($query) > 0){ 
+               mysql_query("UPDATE rank SET charLevel = $charLevel WHERE charName = '$charName'");
+            }
+            else{
+                $sql = "INSERT INTO rank (charName, charLevel, Id_class) VALUES ('$charName', $charLevel, $id_class)";
                 
-                if(mysql_num_rows($query) > 0){ 
-                   mysql_query("UPDATE rank SET charLevel = $charLevel
-                        WHERE 'charName' = '$charName'");
+                if (!mysql_query($sql)){
+                    die('Error: ' . mysql_error());
                 }
-                else{
-                    $sql = "INSERT INTO rank (charName, charLevel, Id_class) VALUES ('$charName', $charLevel, $id_class)";
-                    
-                    if (!mysql_query($sql)){
-                        die('Error: ' . mysql_error());
-                    }
-                        echo $charName. " adicionado ao ranking com sucesso<br/>";  
-                }
-            }            
+                
+                echo $charName. " adicionado ao ranking com sucesso<br/>";  
+            }
+        }            
     }
 }
 ?>
