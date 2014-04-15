@@ -1,13 +1,13 @@
 <?php
 	require_once 'class/conexao.class.php';  
 	require_once 'class/getCharInfo.class.php';
-    require_once 'class/char.class.php';
-	$getChar[] = array();
-    $getChar = new getCharInfo();
-    $con = new conexao();
-    $con->connect();
-    $con->insert($getChar);     
-    $con->disconnect();
+	require_once 'class/char.class.php';
+	$charInfo = new getCharInfo();
+	$charList = $charInfo->getCharList(); //ja retorna um array
+	$con = new conexao();
+	$con->connect();
+	$con->insert($getChar);     
+	$con->disconnect();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
