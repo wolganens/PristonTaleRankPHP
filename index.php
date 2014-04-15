@@ -3,10 +3,9 @@
 	require_once 'class/getCharInfo.class.php';
 	require_once 'class/char.class.php';
 	$charInfo = new getCharInfo();
-	$charList = $charInfo->getCharList(); //ja retorna um array
 	$con = new conexao();
 	$con->connect();
-	$con->insert($getChar);     
+	$con->insert($charInfo);     
 	$con->disconnect();
 ?>
 <!DOCTYPE html>
