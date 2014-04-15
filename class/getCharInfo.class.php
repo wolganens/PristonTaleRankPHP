@@ -29,8 +29,9 @@ class getCharInfo{
 			exit(1);
 		}
 		
-		return $this->charList;
+		//return $this->charList;
 	}
+	
 	public function getLevel($dat){		
 		$fr = fopen($dat, "rb");
 		fseek($fr, 200);
@@ -38,6 +39,7 @@ class getCharInfo{
 
 		return $charLevel;
 	}
+	
 	public function getClass($dat){
 		$fr = fopen($dat, "rb");
 		fseek($fr, 196);
