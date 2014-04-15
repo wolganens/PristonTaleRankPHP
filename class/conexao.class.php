@@ -36,9 +36,9 @@ class conexao
         return false;
     }
     
-    public function insert($charList){
+    public function insert($charInfo){
             
-        $charList = $charList->getCharInfo();
+        $charList = $charInfo->getCharList();
 
         foreach($charList as $value){
 
