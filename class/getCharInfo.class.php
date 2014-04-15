@@ -48,7 +48,7 @@ class getCharInfo{
 		return $charClass;
 	}
 
-	public function getCharInfo(){
+	public function getCharList(){
 		return $this->charList;
 	}
 }
